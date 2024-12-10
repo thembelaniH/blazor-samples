@@ -19,11 +19,11 @@ jobs:
 
     # Restore dependencies
     - name: Restore dependencies
-      run: dotnet restore 9.0/BlazorSample_BlazorWebApp/BlazorSample_WebApp.csproj
+      run: dotnet restore 9.0/BlazorSample_BlazorWebApp/BlazorSample.csproj
 
     # Build and publish the Blazor application
     - name: Build and Publish
-      run: dotnet publish 9.0/BlazorSample_BlazorWebApp/BlazorSample_WebApp.csproj -c Release -o /var/www/blazorsample
+      run: dotnet publish 9.0/BlazorSample_BlazorWebApp/BlazorSample.csproj -c Release -o /var/www/blazorsample
     
     - name: Restart Application Service
       run: |
