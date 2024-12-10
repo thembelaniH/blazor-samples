@@ -12,10 +12,6 @@ jobs:
   build-and-test:
     runs-on: self-hosted
 
-    defaults:
-      run:
-        working-directory: /9.0/BlazorSample_WebAssembly
-
     steps:
     # Checkout the code
     - name: Checkout code
@@ -23,11 +19,11 @@ jobs:
 
     # Restore dependencies
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore 9.0/BlazorSample_BlazorWebApp/BlazorSample_WebApp.csproj
 
     # Build and publish the Blazor application
     - name: Build and Publish
-      run: dotnet publish -c Release -o /var/www/blazorsample
+      run: dotnet publish 9.0/BlazorSample_BlazorWebApp/BlazorSample_WebApp.csproj -c Release -o /var/www/blazorsample
     
     - name: Restart Application Service
       run: |
