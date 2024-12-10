@@ -16,6 +16,9 @@ jobs:
     # Checkout the code
     - name: Checkout code
       uses: actions/checkout@v3
+      
+    - name: Set Environment Variables
+      run: echo "HOME=/root/actions-runner" >> $GITHUB_ENV
 
     # Restore dependencies
     - name: Restore dependencies
