@@ -13,25 +13,22 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    # Checkout the code
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Set Environment Variables
-      run: echo "HOME=/root/actions-runner" >> $GITHUB_ENV
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Restore dependencies
-    - name: Restore dependencies
-      run: dotnet restore 9.0/BlazorSample_BlazorWebApp
+      - name: Set Environment Variables
+        run: echo "HOME=/root/actions-runner" >> $GITHUB_ENV
 
-    # Build and publish the Blazor application
-    - name: Build and Publish
-      run: dotnet publish 9.0/BlazorSample_BlazorWebApp -c Release -o /var/www/blazorsample
-    
-    - name: Restart Application Service
-      run: |
-        sudo systemctl restart blazorsample.service
-    
-    - name: Reload Nginx
-      run: |
-        sudo nginx -t && sudo systemctl reload nginx
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore 9.0/BlazorSample_BlazorWebApp
+
+      # Build and publish the Blazor application
+      - name: Build and Publish
+        run: dotnet publish 9.0/BlazorSample_BlazorWebApp -c Release -o /var/www/blazorsample
+
+      - name: Restart Application Service
+        run: |
+          sudo systemctl restart blazorsample.service
+
